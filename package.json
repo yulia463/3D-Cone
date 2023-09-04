@@ -19,7 +19,7 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "ts-node app.ts",
+    "start": "react-scripts start",
     "build": "tsc",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
