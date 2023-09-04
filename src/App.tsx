@@ -1,44 +1,39 @@
-import  { useEffect } from 'react';
-import React from "react";
+import React, { useState } from 'react';
 import * as THREE from 'three';
+import ThreeCone from './ThreeCone';
 
 const App = () => {
-    useEffect(() => {
-        // Создаем сцену, камеру и рендерер
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer();
+    const [height, setHeight] = useState(1);
+    const [radius, setRadius] = useState(1);
+    const [segments, setSegments] = useState(8);
 
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
+    const handleHeightChange = (e) => {
+        setHeight(parseFloat(e.target.value));
+    };
 
-        // Создаем геометрию и материал для куба
-        const geometry = new THREE.BoxGeometry();
-        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-        const cube = new THREE.Mesh(geometry, material);
-        scene.add(cube);
+    const handleRadiusChange = (e) => {
+        setRadius(parseFloat(e.target.value));
+    };
 
-        camera.position.z = 5;
-
-        // Функция анимации
-        const animate = () => {
-            requestAnimationFrame(animate);
-
-            cube.rotation.x += 0.01;
-            cube.rotation.y += 0.01;
-
-            renderer.render(scene, camera);
-        };
-
-        animate();
-    }, []); // Пустой массив зависимостей означает, что эффект будет выполняться только один раз
+    const handleSegmentsChange = (e) => {
+        setSegments(parseInt(e.target.value));
+    };
 
     return (
         <div>
-            {/* Здесь вы можете добавить другие компоненты React */}
+            <h1>Введите параметры конуса:</h1>
+            <label htmlFor="height">Высота:</label>
+            <input type="number" id="height" value={height} onChange={handleHeightChange} step="0.1" />
+
+            <label htmlFor="radius">Радиус:</label>
+            <input type="number" id="radius" value={radius} onChange={handleRadiusChange} step="0.1" />
+
+            <label htmlFor="segments">Сегменты:</label>
+            <input type="number" id="segments" value={segments} onChange={handleSegmentsChange} />
+
+            <ThreeCone height={height} radius={radius} segments={segments} />
         </div>
     );
 };
 
 export default App;
-
