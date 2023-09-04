@@ -22,7 +22,7 @@ const ThreeCone: React.FC<ThreeConeProps> = ({ height, radius, segments }) => {
         renderer.setSize(window.innerWidth, window.innerHeight);
 
         const geometry = new THREE.ConeGeometry(radius, height, segments);
-        const material = new THREE.MeshPhongMaterial({ color: 0x4b4f54 });
+        const material = new THREE.MeshPhongMaterial({ color: 0x828588 });
 
         const cone = new THREE.Mesh(geometry, material);
 

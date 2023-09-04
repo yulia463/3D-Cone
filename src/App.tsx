@@ -47,13 +47,13 @@ const App: React.FC = () => {
             <h1 className={s.appContainer}>Введите параметры конуса:</h1>
             <div className={s.labelsAndInputs}>
                 <label htmlFor="height">Высота :</label>
-                <input type="number" id="height" value={height} onChange={handleHeightChange} step="0.1" />
+                <input type="number" id="height" value={height} onChange={handleHeightChange} step="0.1" max={7} />
 
                 <label htmlFor="radius">Радиус :</label>
-                <input type="number" id="radius" value={radius} onChange={handleRadiusChange} step="0.1" />
+                <input type="number" id="radius" value={radius} onChange={handleRadiusChange} step="0.1" max={6}/>
 
                 <label htmlFor="segments">Сегменты :</label>
-                <input type="number" id="segments" value={segments} onChange={handleSegmentsChange} />
+                <input type="number" id="segments" value={segments} onChange={handleSegmentsChange} max={80}/>
             </div>
 
             <button className={s.button} onClick={handleUpdateClick}>Обновить конус</button>
