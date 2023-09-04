@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ThreeCone from './ThreeCone';
+//@ts-ignore
 import s from './App.module.css'
 
 const App = () => {
@@ -22,14 +23,17 @@ const App = () => {
     return (
         <div>
             <h1 className={s.appContainer}>Введите параметры конуса:</h1>
-            <label htmlFor="height">Высота:</label>
-            <input type="number" id="height" value={height} onChange={handleHeightChange} step="0.1" />
+            <div className={s.labelsAndInputs}>
+                <label htmlFor="height">Высота:</label>
+                <input type="number" id="height" value={height} onChange={handleHeightChange} step="0.1" />
 
-            <label htmlFor="radius">Радиус:</label>
-            <input type="number" id="radius" value={radius} onChange={handleRadiusChange} step="0.1" />
+                <label htmlFor="radius">Радиус:</label>
+                <input type="number" id="radius" value={radius} onChange={handleRadiusChange} step="0.1" />
 
-            <label htmlFor="segments">Сегменты:</label>
-            <input type="number" id="segments" value={segments} onChange={handleSegmentsChange} />
+                <label htmlFor="segments">Сегменты:</label>
+                <input type="number" id="segments" value={segments} onChange={handleSegmentsChange} />
+            </div>
+
 
             <ThreeCone height={height} radius={radius} segments={segments} />
         </div>
