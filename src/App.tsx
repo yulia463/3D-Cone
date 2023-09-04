@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
-import * as THREE from 'three';
 import ThreeCone from './ThreeCone';
+import s from './App.module.css'
 
 const App = () => {
     const [height, setHeight] = useState(1);
     const [radius, setRadius] = useState(1);
     const [segments, setSegments] = useState(8);
 
-    const handleHeightChange = (e) => {
+    const handleHeightChange = (e:any) => {
         setHeight(parseFloat(e.target.value));
     };
 
-    const handleRadiusChange = (e) => {
+    const handleRadiusChange = (e:any) => {
         setRadius(parseFloat(e.target.value));
     };
 
-    const handleSegmentsChange = (e) => {
+    const handleSegmentsChange = (e:any) => {
         setSegments(parseInt(e.target.value));
     };
 

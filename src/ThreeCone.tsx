@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
-import styles from './ThreeCone.module.css'; // Импортируйте стили
+import styles from './ThreeCone.module.css';
 
 const ThreeCone = ({ height, radius, segments }) => {
     const canvasRef = useRef(null);
@@ -17,7 +17,7 @@ const ThreeCone = ({ height, radius, segments }) => {
 
         // Задайте класс стиля для конуса
         const cone = new THREE.Mesh(geometry, material);
-        cone.userData.className = styles.cone; // Примените стиль из CSS-модуля
+        cone.userData.className = styles.cone;
 
         scene.add(cone);
 
