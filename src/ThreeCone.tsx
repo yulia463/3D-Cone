@@ -1,6 +1,5 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
-//@ts-ignore
 import s from './App.module.css';
 
 interface ThreeConeProps {
@@ -23,6 +22,7 @@ const ThreeCone: React.FC<ThreeConeProps> = ({ height, radius, segments }) => {
 
         const geometry = new THREE.ConeGeometry(radius, height, segments);
         const material = new THREE.MeshPhongMaterial({ color: 0x4b4f54 });
+
         const cone = new THREE.Mesh(geometry, material);
 
         scene.add(cone);
@@ -47,5 +47,4 @@ const ThreeCone: React.FC<ThreeConeProps> = ({ height, radius, segments }) => {
 
     return <canvas ref={canvasRef} />;
 };
-
 export default ThreeCone;
