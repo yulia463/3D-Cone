@@ -28,7 +28,7 @@ const App: React.FC = () => {
     };
 
     const handleSegmentsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (Number(e.target.value) > 2){
+        if (Number(e.target.value) < 0){
             return
         }
         setSegments(parseInt(e.target.value));
@@ -46,17 +46,17 @@ const App: React.FC = () => {
         <div>
             <h1 className={s.appContainer}>Введите параметры конуса:</h1>
             <div className={s.labelsAndInputs}>
-                <label htmlFor="height">Высота:</label>
+                <label htmlFor="height">Высота :</label>
                 <input type="number" id="height" value={height} onChange={handleHeightChange} step="0.1" />
 
-                <label htmlFor="radius">Радиус:</label>
+                <label htmlFor="radius">Радиус :</label>
                 <input type="number" id="radius" value={radius} onChange={handleRadiusChange} step="0.1" />
 
-                <label htmlFor="segments">Сегменты:</label>
+                <label htmlFor="segments">Сегменты :</label>
                 <input type="number" id="segments" value={segments} onChange={handleSegmentsChange} />
             </div>
 
-            <button onClick={handleUpdateClick}>Обновить конус</button> {/* Кнопка для обновления конуса */}
+            <button className={s.button} onClick={handleUpdateClick}>Обновить конус</button>
             <ThreeCone
                 height={threeCone.height}
                 radius={threeCone.radius}
