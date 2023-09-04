@@ -4,25 +4,42 @@ import ThreeCone from './ThreeCone';
 import s from './App.module.css'
 
 const App: React.FC = () => {
+    const [threeCone, setThreeCone] = useState({
+        height: 1,
+        radius: 1,
+        segments: 8,
+    })
     const [height, setHeight] = useState(1);
     const [radius, setRadius] = useState(1);
     const [segments, setSegments] = useState(8);
-    const [key, setKey] = useState(0); // Состояние для обновления компонента ThreeCone
 
     const handleHeightChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (Number(e.target.value) < 0){
+            return
+        }
         setHeight(parseFloat(e.target.value));
     };
 
     const handleRadiusChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (Number(e.target.value) < 0){
+            return
+        }
         setRadius(parseFloat(e.target.value));
     };
 
     const handleSegmentsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (Number(e.target.value) > 2){
+            return
+        }
         setSegments(parseInt(e.target.value));
     };
 
     const handleUpdateClick = () => {
-        setKey((prevKey) => prevKey + 1); // Обновляем ключ компонента ThreeCone
+        setThreeCone({
+            height,
+            radius,
+            segments,
+        })
     };
 
     return (
@@ -40,7 +57,11 @@ const App: React.FC = () => {
             </div>
 
             <button onClick={handleUpdateClick}>Обновить конус</button> {/* Кнопка для обновления конуса */}
-            <ThreeCone key={key} height={height} radius={radius} segments={segments}  /> {/* Используем ключ для обновления компонента ThreeCone */}
+            <ThreeCone
+                height={threeCone.height}
+                radius={threeCone.radius}
+                segments={threeCone.segments}
+            />
         </div>
     );
 };

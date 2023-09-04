@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
+//@ts-ignore
 import s from './App.module.css';
 
 interface ThreeConeProps {
