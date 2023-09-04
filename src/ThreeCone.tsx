@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
+
 import styles from './ThreeCone.module.css';
 
 const ThreeCone = ({ height, radius, segments }) => {

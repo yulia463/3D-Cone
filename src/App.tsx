@@ -21,7 +21,7 @@ const App = () => {
 
     return (
         <div>
-            <h1>Введите параметры конуса:</h1>
+            <h1 className={s.appContainer}>Введите параметры конуса:</h1>
             <label htmlFor="height">Высота:</label>
             <input type="number" id="height" value={height} onChange={handleHeightChange} step="0.1" />
 
