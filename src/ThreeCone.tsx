@@ -1,12 +1,19 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
-import styles from './ThreeCone.module.css';
+// Определите типы для свойств компонента
+interface ThreeConeProps {
+    height: number;
+    radius: number;
+    segments: number;
+}
 
-const ThreeCone = ({ height, radius, segments }) => {
-    const canvasRef = useRef(null);
+const ThreeCone: React.FC<ThreeConeProps> = ({ height, radius, segments }) => {
+    const canvasRef = useRef<HTMLCanvasElement | null>(null); // Добавьте тип для canvasRef
 
     useEffect(() => {
+        if (!canvasRef.current) return;
+
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current });
@@ -16,9 +23,7 @@ const ThreeCone = ({ height, radius, segments }) => {
         const geometry = new THREE.ConeGeometry(radius, height, segments);
         const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
 
-        // Задайте класс стиля для конуса
         const cone = new THREE.Mesh(geometry, material);
-        cone.userData.className = styles.cone;
 
         scene.add(cone);
 
