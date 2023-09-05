@@ -1,6 +1,20 @@
 import { instance } from "common/api/common.api";
 import { BaseResponseType } from "common/types/common.types";
 
+import axios from 'axios';
+
+// Теперь вы можете использовать Axios для выполнения HTTP-запросов
+axios.get('https://example.com/api/data')
+    .then((response) => {
+        console.log(response.data);
+    })
+    .catch((error) => {
+        console.error(error);
+    });
+
+
+
+
 export const authAPI = {
     login(data: LoginParamsType) {
         return instance.post<BaseResponseType<{ userId?: number }>>("auth/login", data);
