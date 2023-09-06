@@ -10,7 +10,6 @@ type GetConeParamsProps = {
     segments: number;
 }
 
-
 export const api = {
     getConeTriangulation(params: GetConeParamsProps) {
         return instance.post('cone/triangulate', params)
