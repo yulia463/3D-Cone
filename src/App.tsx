@@ -1,17 +1,25 @@
-import React, {useState} from 'react';
-import ThreeCone from './ThreeCone';
-//@ts-ignore
+import {useState, useEffect} from 'react';
 import s from './App.module.css'
+import {api} from "./Api/api";
+import ConeRenderer from "./ConeRenderer";
 
+type ConeData = {
+    vertices: Array<number>;
+    indices: Array<number>;
+}
 const App: React.FC = () => {
     const [threeCone, setThreeCone] = useState({
-        height: 1,
-        radius: 1,
+        height: 2,
+        radius: 5,
         segments: 8,
     })
+
+    const [coneData, setConeData] = useState<ConeData | null>(null)
+
     const [height, setHeight] = useState(1);
     const [radius, setRadius] = useState(1);
     const [segments, setSegments] = useState(8);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleHeightChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (Number(e.target.value) < 0) {
@@ -42,6 +50,23 @@ const App: React.FC = () => {
         })
     };
 
+    useEffect(() => {
+        setIsLoading(true);
+        api.getConeTriangulation(threeCone)
+            .then((res) => {
+                setConeData({
+                    indices: res?.data?.indices,
+                    vertices: res?.data?.vertices
+                })
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+            .finally(()=>{
+                setIsLoading(false)
+            })
+    }, [threeCone])
+
     return (
         <div>
             <h1 className={s.appContainer}>Введите параметры конуса:</h1>
@@ -55,22 +80,12 @@ const App: React.FC = () => {
                 <label htmlFor="segments"><b>Сегменты:</b></label>
                 <input type="number" id="segments" value={segments} onChange={handleSegmentsChange} max={80}/>
             </div>
-            <div className={s.text}>
-                <span>Min Value - 1 and Max Value - 7</span>
-                <span>Min Value - 1 and Max Value - 6</span>
-                <span>Min Value - 2 and Max Value - 80</span>
-
-
-            </div>
-            <button className={s.button} onClick={handleUpdateClick}>Обновить конус</button>
-            <ThreeCone
-                height={threeCone.height}
-                radius={threeCone.radius}
-                segments={threeCone.segments}
-            />
+            <button className={`${s.button} ${isLoading ? s.loading : ''}`} onClick={handleUpdateClick}>
+                {isLoading ? 'Загрузка...' : 'Обновить конус'}
+            </button>
+            {coneData && (<ConeRenderer vertices={coneData?.vertices} indices={coneData?.indices}/>)}
         </div>
     );
 };
-
 
 export default App;

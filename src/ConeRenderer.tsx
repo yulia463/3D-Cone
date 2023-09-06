@@ -1,15 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import  { useEffect, useRef } from 'react';
 import * as THREE from 'three';
-//@ts-ignore
-import s from './App.module.css';
 
-interface ThreeConeProps {
-    height: number;
-    radius: number;
-    segments: number;
+type ConeRendererPropsType = {
+    vertices: Array<number>;
+    indices: Array<number>;
 }
-
-const ThreeCone: React.FC<ThreeConeProps> = ({ height, radius, segments }) => {
+const ConeRenderer = ({ vertices, indices }: ConeRendererPropsType) => {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
     useEffect(() => {
@@ -21,8 +17,10 @@ const ThreeCone: React.FC<ThreeConeProps> = ({ height, radius, segments }) => {
         scene.background = new THREE.Color(0xEEEEEE);
         renderer.setSize(window.innerWidth, window.innerHeight);
 
-        const geometry = new THREE.ConeGeometry(radius, height, segments);
-        const material = new THREE.MeshPhongMaterial({ color: 0x828588 });
+        const geometry = new THREE.BufferGeometry();
+        geometry.setIndex( indices );
+        geometry.setAttribute( 'position', new THREE.BufferAttribute( new Float32Array(vertices), 3 ) );
+        const material = new THREE.MeshBasicMaterial({ color: 0x828588 });
 
         const cone = new THREE.Mesh(geometry, material);
 
@@ -44,8 +42,9 @@ const ThreeCone: React.FC<ThreeConeProps> = ({ height, radius, segments }) => {
         };
 
         animate();
-    }, [height, radius, segments]);
+    }, [indices, vertices]);
 
     return <canvas ref={canvasRef} />;
 };
-export default ThreeCone;
+
+export default ConeRenderer;
