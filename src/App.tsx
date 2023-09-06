@@ -1,5 +1,5 @@
 import  {useState, useEffect} from 'react';
-import s from './App.module.css';
+import './App.css';
 import {api} from './Api/api';
 import ConeRenderer from './ConeRenderer';
 
@@ -59,7 +59,6 @@ const App: React.FC = () => {
         if (Number(e.target.value) < 0) {
             return;
         }
-
         setSegments(parseInt(e.target.value));
     };
 
@@ -81,18 +80,16 @@ const App: React.FC = () => {
 
     return (
         <div>
-            <h1 className={s.appContainer}>Введите параметры конуса:</h1>
-            <div className={s.labelsAndInputs}>
+            <h1 className="appContainer">Введите параметры конуса:</h1>
+            <div className="labelsAndInputs">
                 <label htmlFor="height">
                     <b>Высота:</b>
                 </label>
                 <input type="number" id="height" value={height} onChange={handleHeightChange} step="0.1" max={7}/>
-
                 <label htmlFor="radius">
                     <b>Радиус:</b>
                 </label>
                 <input type="number" id="radius" value={radius} onChange={handleRadiusChange} step="0.1" max={6}/>
-
                 <div>
                     <label htmlFor="segments">
                         <b>Сегменты:</b>
@@ -100,11 +97,11 @@ const App: React.FC = () => {
                     <input type="number" id="segments" value={segments} onChange={handleSegmentsChange} max={80}/>
                 </div>
             </div>
-            <label className={s.checkbox}>
+            <label className="checkbox">
                 <input type="checkbox" checked={segments >= 360} onChange={handleCheckboxChange}/>
                 Дополнительное задание (гладкий конус)
             </label>
-            <button className={`${s.button} ${isLoading ? s.loading : ''}`} onClick={handleUpdateClick}>
+            <button className={`button ${isLoading ? "loading" : ''}`} onClick={handleUpdateClick}>
                 {isLoading ? 'Загрузка...' : 'Обновить конус'}
             </button>
             {coneData && <ConeRenderer vertices={coneData?.vertices} indices={coneData?.indices}/>}
