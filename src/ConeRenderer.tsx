@@ -20,7 +20,7 @@ const ConeRenderer = ({ vertices, indices }: ConeRendererPropsType) => {
         const geometry = new THREE.BufferGeometry();
         geometry.setIndex( indices );
         geometry.setAttribute( 'position', new THREE.BufferAttribute( new Float32Array(vertices), 3 ) );
-        const material = new THREE.MeshBasicMaterial({ color: 0x828588 });
+        const material = new THREE.MeshBasicMaterial({ color: 0x474849 });
 
         const cone = new THREE.Mesh(geometry, material);
 

@@ -23,10 +23,8 @@
     background-color: #282c34;
     color: #ffffff;
 }
-
-.text {
+.checkbox{
     display: flex;
-    justify-content: space-evenly;
-    color: #993361;
+    justify-content: center;
 }
 
