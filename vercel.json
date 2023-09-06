@@ -2,8 +2,5 @@
   "builds": [{ "src": "package.json", "use": "@now/static-build" }],
   "routes": [
     { "src": "/(.*)", "dest": "/$1" }
-  ],
-  "directories": {
-    "build": "build"
-  }
+  ]
 }
