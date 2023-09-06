@@ -1,46 +1,52 @@
-# Getting Started with Create React App
+# 3D Cone Viewer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a simple client-server web application that allows you to view a 3D cone. It provides a user-friendly interface to input cone parameters and displays the cone in a 3D view.
 
-## Available Scripts
+Front-End Repository: [Front-End Repository](https://github.com/yulia463/3D-Cone)
+Back-End Repository: [Back-End Repository](https://github.com/yulia463/3d-backend)
 
-In the project directory, you can run:
+## Table of Contents
+- [Features](#features)
+- [Technologies](#technologies)
+- [Installation](#installation)
 
-### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Features
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Single page application (SPA) with both front-end and back-end components.
+- User-friendly interface for entering cone parameters, including height, radius, and the number of segments on a circle.
+- Client-server architecture for transferring data to the server.
+- Server-side computation of cone triangulation, i.e., the set of triangles used for display.
+- Display of computed triangulation in a 3D view using WebGL, leveraging the three.js library.
 
-### `yarn test`
+## Technologies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Front-End:
+    - HTML, CSS
+    - JavaScript
+    - Three.js
 
-### `yarn build`
+- Back-End:
+    - Nest.js
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Installation
+<p>Clone this repository.</p>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<p>Install dependencies</p>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+yarn
+```
 
-### `yarn eject`
+## Running the app
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+yarn start
+```
+Open the web-browser and go to
+```bash
+http://localhost:3000/
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+author Yulia Slatvitskaya [Linkedin](https://www.linkedin.com/in/yulia-slatvitskaya-312670240/).

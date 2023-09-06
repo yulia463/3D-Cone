@@ -17,9 +17,9 @@ const App: React.FC = () => {
 
     const [coneData, setConeData] = useState<ConeData | null>(null);
 
-    const [height, setHeight] = useState(1);
-    const [radius, setRadius] = useState(1);
-    const [segments, setSegments] = useState(8);
+    const [height, setHeight] = useState<number | ''>(1);
+    const [radius, setRadius] = useState<number | ''>(1);
+    const [segments, setSegments] = useState<number | ''>(8);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
@@ -45,29 +45,51 @@ const App: React.FC = () => {
         if (Number(e.target.value) < 0) {
             return;
         }
-        setHeight(parseFloat(e.target.value));
+
+        const newValue = parseFloat(e.target.value);
+
+        if (!isNaN(newValue) && newValue >= 0) {
+            setHeight(newValue);
+        } else {
+            setHeight('')
+        }
     };
 
     const handleRadiusChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (Number(e.target.value) < 0) {
             return;
         }
-        setRadius(parseFloat(e.target.value));
+        const newValue = parseFloat(e.target.value);
+
+        if (!isNaN(newValue) && newValue >= 0) {
+            setRadius(newValue);
+        } else {
+            setRadius('')
+        }
     };
 
     const handleSegmentsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (Number(e.target.value) < 0) {
             return;
         }
-        setSegments(parseInt(e.target.value));
+
+        const newValue = parseFloat(e.target.value);
+
+        if (!isNaN(newValue) && newValue >= 0) {
+            setSegments(newValue);
+        } else {
+            setSegments('')
+        }
     };
 
     const handleUpdateClick = () => {
-        setThreeCone({
-            height,
-            radius,
-            segments,
-        });
+        if (height && radius && segments) {
+            setThreeCone({
+                height,
+                radius,
+                segments,
+            });
+        }
     };
 
     const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -101,7 +123,11 @@ const App: React.FC = () => {
                 <input type="checkbox" checked={segments >= 360} onChange={handleCheckboxChange}/>
                 Дополнительное задание (гладкий конус)
             </label>
-            <button className={`button ${isLoading ? "loading" : ''}`} onClick={handleUpdateClick}>
+            <button
+                className={`button ${isLoading ? "loading" : ''}`}
+                onClick={handleUpdateClick}
+                disabled={!height || !radius || !segments}
+            >
                 {isLoading ? 'Загрузка...' : 'Обновить конус'}
             </button>
             {coneData && <ConeRenderer vertices={coneData?.vertices} indices={coneData?.indices}/>}
